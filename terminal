@@ -1,0 +1,375 @@
+======================================================================
+                  FACE RECOGNITION USING PCA AND ANN                  
+======================================================================
+
+STEP 1: LOADING AND PREPROCESSING IMAGES
+----------------------------------------------------------------------
+Loading images from: Aamir
+  [OK] Loaded 50 images for Aamir
+Loading images from: Ajay
+  [OK] Loaded 50 images for Ajay
+Loading images from: Akshay
+  [OK] Loaded 50 images for Akshay
+Loading images from: Alia
+  [OK] Loaded 50 images for Alia
+Loading images from: Amitabh
+  [OK] Loaded 50 images for Amitabh
+Loading images from: Deepika
+  [OK] Loaded 50 images for Deepika
+Loading images from: Disha
+  [OK] Loaded 50 images for Disha
+Loading images from: Farhan
+  [OK] Loaded 50 images for Farhan
+Loading images from: Ileana
+  [OK] Loaded 50 images for Ileana
+Loading images from: build
+  WARNING: No valid images found for build. Skipping class.
+
+[OK] Data Loading Complete!
+  Face_Db shape: (10000, 450)
+  Number of persons: 9
+  Total images: 450
+  Labels: [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2
+ 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+ 2 2 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+ 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4
+ 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 5 5 5 5 5 5 5 5 5
+ 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5
+ 5 5 5 5 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6
+ 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7
+ 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 8 8 8 8 8 8 8
+ 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8
+ 8 8 8 8 8 8]
+  Person names: ['Aamir', 'Ajay', 'Akshay', 'Alia', 'Amitabh', 'Deepika', 'Disha', 'Farhan', 'Ileana']
+
+STEP 2: COMPUTING MEAN FACE
+----------------------------------------------------------------------
+[OK] Mean face computed!
+  Mean face shape: (10000,)
+
+STEP 3: MEAN CENTERING DATA
+----------------------------------------------------------------------
+[OK] Data mean-centered!
+  Delta shape: (10000, 450)
+
+STEP 4: COMPUTING SURROGATE COVARIANCE MATRIX
+----------------------------------------------------------------------
+[OK] Covariance matrix computed!
+  L (Surrogate covariance) shape: (450, 450)
+  L condition number: 1.60e+34
+
+STEP 5: EIGEN DECOMPOSITION
+----------------------------------------------------------------------
+[OK] Eigen decomposition complete!
+  Eigenvalues shape: (450,)
+  Eigenvectors shape: (450, 450)
+  Top 5 eigenvalues: [6067333.93247819 4307668.75951054 3268632.93158951 1950732.9431654
+ 1689430.44427054]
+
+STEP 6: SORTING EIGENVALUES
+----------------------------------------------------------------------
+[OK] Eigenvalues sorted in descending order!
+  Eigenvalues (top 10): [6067333.93247819 4307668.75951054 3268632.93158951 1950732.9431654
+ 1689430.44427054 1025502.45440387  845673.29077392  799269.53096758
+  706972.76090469  616789.50173644]
+
+STEP 7: SELECTING K=90 PRINCIPAL COMPONENTS
+----------------------------------------------------------------------
+[OK] Selected top 90 components!
+  Selected eigenvectors shape: (450, 90)
+
+STEP 8: GENERATING EIGENFACES
+----------------------------------------------------------------------
+[OK] Eigenfaces generated!
+  Eigenfaces shape: (10000, 90)
+
+STEP 9: GENERATING SIGNATURES (PCA PROJECTION)
+----------------------------------------------------------------------
+[OK] Signatures generated!
+  Signatures shape: (450, 90)
+
+STEP 10: SPLITTING DATASET
+----------------------------------------------------------------------
+STEP 11: TRAINING ARTIFICIAL NEURAL NETWORK (ANN)
+----------------------------------------------------------------------
+Training ANN with architecture: (32,)
+Solver: adam | Activation: relu | Max iterations: 3000
+
+[OK] ANN training complete!
+  Training accuracy: 1.0000
+
+STEP 12: EVALUATING MODEL
+----------------------------------------------------------------------
+[OK] Model evaluated!
+  Test Accuracy: 0.6556 (65.56%)
+
+Confusion Matrix:
+----------------------------------------------------------------------
+Actual \ Predicted  Aamir          Ajay           Akshay         Alia           Amitabh        Deepika        Disha          Farhan         Ileana         
+Aamir               6              1              0              0              1              1              1              0              0              
+Ajay                2              7              0              0              0              0              0              0              1              
+Akshay              1              1              7              0              0              1              0              0              0              
+Alia                1              0              1              3              0              2              2              0              1              
+Amitabh             0              0              0              0              10             0              0              0              0              
+Deepika             1              0              0              1              0              7              0              1              0              
+Disha               0              0              0              2              0              1              5              0              2              
+Farhan              0              0              2              0              0              1              0              7              0              
+Ileana              0              0              1              1              0              0              1              0              7              
+
+======================================================================
+MAIN FACE RECOGNITION MODEL COMPLETE
+Final Test Accuracy: 0.6556 (65.56%)
+======================================================================
+
+STEP 13: ACCURACY VS K EXPERIMENT
+----------------------------------------------------------------------
+Testing k values: [5, 10, 20, 30, 40]
+
+STEP 7: SELECTING K=5 PRINCIPAL COMPONENTS
+----------------------------------------------------------------------
+[OK] Selected top 5 components!
+  Selected eigenvectors shape: (450, 5)
+
+STEP 8: GENERATING EIGENFACES
+----------------------------------------------------------------------
+[OK] Eigenfaces generated!
+  Eigenfaces shape: (10000, 5)
+
+STEP 9: GENERATING SIGNATURES (PCA PROJECTION)
+----------------------------------------------------------------------
+[OK] Signatures generated!
+  Signatures shape: (450, 5)
+
+STEP 10: SPLITTING DATASET
+----------------------------------------------------------------------
+STEP 11: TRAINING ARTIFICIAL NEURAL NETWORK (ANN)
+----------------------------------------------------------------------
+Training ANN with architecture: (32,)
+Solver: adam | Activation: relu | Max iterations: 3000
+
+[OK] ANN training complete!
+  Training accuracy: 0.7111
+
+STEP 12: EVALUATING MODEL
+----------------------------------------------------------------------
+[OK] Model evaluated!
+  Test Accuracy: 0.4444 (44.44%)
+
+Confusion Matrix:
+----------------------------------------------------------------------
+Actual \ Predicted  Aamir          Ajay           Akshay         Alia           Amitabh        Deepika        Disha          Farhan         Ileana         
+Aamir               6              2              1              0              0              0              0              1              0              
+Ajay                3              5              0              0              0              1              1              0              0              
+Akshay              4              1              3              1              0              1              0              0              0              
+Alia                0              1              0              3              0              1              4              0              1              
+Amitabh             0              0              0              0              10             0              0              0              0              
+Deepika             1              0              1              2              1              3              1              1              0              
+Disha               0              0              0              1              0              3              3              1              2              
+Farhan              0              1              1              0              2              0              1              5              0              
+Ileana              0              0              0              2              0              2              4              0              2              
+
+k=5: Accuracy = 0.4444
+STEP 7: SELECTING K=10 PRINCIPAL COMPONENTS
+----------------------------------------------------------------------
+[OK] Selected top 10 components!
+  Selected eigenvectors shape: (450, 10)
+
+STEP 8: GENERATING EIGENFACES
+----------------------------------------------------------------------
+[OK] Eigenfaces generated!
+  Eigenfaces shape: (10000, 10)
+
+STEP 9: GENERATING SIGNATURES (PCA PROJECTION)
+----------------------------------------------------------------------
+[OK] Signatures generated!
+  Signatures shape: (450, 10)
+
+STEP 10: SPLITTING DATASET
+----------------------------------------------------------------------
+STEP 11: TRAINING ARTIFICIAL NEURAL NETWORK (ANN)
+----------------------------------------------------------------------
+Training ANN with architecture: (32,)
+Solver: adam | Activation: relu | Max iterations: 3000
+
+[OK] ANN training complete!
+  Training accuracy: 0.9972
+
+STEP 12: EVALUATING MODEL
+----------------------------------------------------------------------
+[OK] Model evaluated!
+  Test Accuracy: 0.5556 (55.56%)
+
+Confusion Matrix:
+----------------------------------------------------------------------
+Actual \ Predicted  Aamir          Ajay           Akshay         Alia           Amitabh        Deepika        Disha          Farhan         Ileana         
+Aamir               3              2              3              0              0              2              0              0              0              
+Ajay                3              7              0              0              0              0              0              0              0              
+Akshay              2              0              5              1              0              0              0              2              0              
+Alia                0              0              1              3              0              1              2              0              3              
+Amitabh             0              0              0              0              10             0              0              0              0              
+Deepika             1              1              0              1              1              3              3              0              0              
+Disha               0              0              0              2              0              1              5              0              2              
+Farhan              0              0              0              0              1              1              0              8              0              
+Ileana              0              0              0              1              0              1              2              0              6              
+
+k=10: Accuracy = 0.5556
+STEP 7: SELECTING K=20 PRINCIPAL COMPONENTS
+----------------------------------------------------------------------
+[OK] Selected top 20 components!
+  Selected eigenvectors shape: (450, 20)
+
+STEP 8: GENERATING EIGENFACES
+----------------------------------------------------------------------
+[OK] Eigenfaces generated!
+  Eigenfaces shape: (10000, 20)
+
+STEP 9: GENERATING SIGNATURES (PCA PROJECTION)
+----------------------------------------------------------------------
+[OK] Signatures generated!
+  Signatures shape: (450, 20)
+
+STEP 10: SPLITTING DATASET
+----------------------------------------------------------------------
+STEP 11: TRAINING ARTIFICIAL NEURAL NETWORK (ANN)
+----------------------------------------------------------------------
+Training ANN with architecture: (32,)
+Solver: adam | Activation: relu | Max iterations: 3000
+
+[OK] ANN training complete!
+  Training accuracy: 1.0000
+
+STEP 12: EVALUATING MODEL
+----------------------------------------------------------------------
+[OK] Model evaluated!
+  Test Accuracy: 0.6000 (60.00%)
+
+Confusion Matrix:
+----------------------------------------------------------------------
+Actual \ Predicted  Aamir          Ajay           Akshay         Alia           Amitabh        Deepika        Disha          Farhan         Ileana         
+Aamir               5              3              0              0              0              0              0              2              0              
+Ajay                0              7              0              0              0              0              0              3              0              
+Akshay              2              0              5              1              0              0              0              2              0              
+Alia                0              0              0              2              0              3              3              0              2              
+Amitabh             0              0              0              0              10             0              0              0              0              
+Deepika             3              0              1              0              0              3              2              1              0              
+Disha               0              0              0              2              0              1              7              0              0              
+Farhan              0              0              0              0              0              0              0              10             0              
+Ileana              1              0              1              1              0              0              2              0              5              
+
+k=20: Accuracy = 0.6000
+STEP 7: SELECTING K=30 PRINCIPAL COMPONENTS
+----------------------------------------------------------------------
+[OK] Selected top 30 components!
+  Selected eigenvectors shape: (450, 30)
+
+STEP 8: GENERATING EIGENFACES
+----------------------------------------------------------------------
+[OK] Eigenfaces generated!
+  Eigenfaces shape: (10000, 30)
+
+STEP 9: GENERATING SIGNATURES (PCA PROJECTION)
+----------------------------------------------------------------------
+[OK] Signatures generated!
+  Signatures shape: (450, 30)
+
+STEP 10: SPLITTING DATASET
+----------------------------------------------------------------------
+STEP 11: TRAINING ARTIFICIAL NEURAL NETWORK (ANN)
+----------------------------------------------------------------------
+Training ANN with architecture: (32,)
+Solver: adam | Activation: relu | Max iterations: 3000
+
+[OK] ANN training complete!
+  Training accuracy: 1.0000
+
+STEP 12: EVALUATING MODEL
+----------------------------------------------------------------------
+[OK] Model evaluated!
+  Test Accuracy: 0.6667 (66.67%)
+
+Confusion Matrix:
+----------------------------------------------------------------------
+Actual \ Predicted  Aamir          Ajay           Akshay         Alia           Amitabh        Deepika        Disha          Farhan         Ileana         
+Aamir               6              1              0              0              2              1              0              0              0              
+Ajay                1              9              0              0              0              0              0              0              0              
+Akshay              2              1              5              0              0              1              0              1              0              
+Alia                1              0              0              3              0              2              2              0              2              
+Amitabh             0              0              0              0              10             0              0              0              0              
+Deepika             0              0              1              0              1              5              0              2              1              
+Disha               0              0              1              1              0              1              6              0              1              
+Farhan              0              0              0              0              1              0              0              9              0              
+Ileana              0              0              1              0              0              0              2              0              7              
+
+k=30: Accuracy = 0.6667
+STEP 7: SELECTING K=40 PRINCIPAL COMPONENTS
+----------------------------------------------------------------------
+[OK] Selected top 40 components!
+  Selected eigenvectors shape: (450, 40)
+
+STEP 8: GENERATING EIGENFACES
+----------------------------------------------------------------------
+[OK] Eigenfaces generated!
+  Eigenfaces shape: (10000, 40)
+
+STEP 9: GENERATING SIGNATURES (PCA PROJECTION)
+----------------------------------------------------------------------
+[OK] Signatures generated!
+  Signatures shape: (450, 40)
+
+STEP 10: SPLITTING DATASET
+----------------------------------------------------------------------
+STEP 11: TRAINING ARTIFICIAL NEURAL NETWORK (ANN)
+----------------------------------------------------------------------
+Training ANN with architecture: (32,)
+Solver: adam | Activation: relu | Max iterations: 3000
+
+[OK] ANN training complete!
+  Training accuracy: 1.0000
+
+STEP 12: EVALUATING MODEL
+----------------------------------------------------------------------
+[OK] Model evaluated!
+  Test Accuracy: 0.6444 (64.44%)
+
+Confusion Matrix:
+----------------------------------------------------------------------
+Actual \ Predicted  Aamir          Ajay           Akshay         Alia           Amitabh        Deepika        Disha          Farhan         Ileana         
+Aamir               3              3              0              0              1              2              0              0              1              
+Ajay                2              8              0              0              0              0              0              0              0              
+Akshay              0              1              5              0              0              1              1              2              0              
+Alia                1              0              0              6              0              2              1              0              0              
+Amitabh             0              0              0              0              10             0              0              0              0              
+Deepika             0              0              0              0              0              8              1              0              1              
+Disha               0              0              0              2              0              2              6              0              0              
+Farhan              2              0              0              0              0              1              1              6              0              
+Ileana              0              0              0              2              0              0              2              0              6              
+
+k=40: Accuracy = 0.6444
+
+[OK] Graph saved as 'accuracy_vs_k.png'
+
+STEP 14: IMPOSTER DETECTION
+----------------------------------------------------------------------
+Testing 90 images for imposter detection:
+(Using euclidean distance threshold = 12.9194)
+
+Image 1: Predicted=Deepika, Distance=10.0840, Status=ENROLLED
+Image 2: Predicted=Akshay, Distance=15.5283, Status=NOT ENROLLED (Imposter)
+Image 3: Predicted=Alia, Distance=8.6931, Status=ENROLLED
+Image 4: Predicted=Akshay, Distance=12.9221, Status=NOT ENROLLED (Imposter)
+Image 5: Predicted=Alia, Distance=6.5926, Status=ENROLLED
+Image 6: Predicted=Akshay, Distance=12.9221, Status=NOT ENROLLED (Imposter)
+Image 7: Predicted=Ileana, Distance=1.9282, Status=ENROLLED
+Image 8: Predicted=Amitabh, Distance=0.0000, Status=ENROLLED
+Image 9: Predicted=Deepika, Distance=12.8418, Status=ENROLLED
+Image 10: Predicted=Ajay, Distance=0.0000, Status=ENROLLED
+
+Summary of first 10 test images:
+  Enrolled persons: 7
+  Imposter (Not Enrolled): 3
+
+======================================================================
+FACE RECOGNITION PROJECT COMPLETE!
+======================================================================
